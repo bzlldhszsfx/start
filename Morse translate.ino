@@ -76,7 +76,7 @@ void loop()
       if (morse_s[i] == '.') morse.dot();
       else if (morse_s[i] == '-') morse.dash();
       else if (morse_s[i] == ' ') morse.w_space();
-      else morse.c_space();
+      else ；
     }
     Serial.println("播放完毕");
     delay(2);
