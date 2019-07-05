@@ -1,42 +1,60 @@
-
-#include <Morse.h>
-
-Morse morse(13);
+#define _dottime 250
 
 void setup()
 {
+  pinMode(13, OUTPUT);
   Serial.begin(9600);
 }
 
+void dot()
+{
+	digitalWrite(13,HIGH);
+	delay(_dottime);
+	digitalWrite(13,LOW);
+	delay(_dottime);
+}
+void dash()
+{
+	digitalWrite(13,HIGH);
+	delay(_dottime*4);
+	digitalWrite(13,LOW);
+	delay(_dottime);
+}
+ void c_space()
+{
+	digitalWrite(13,LOW);
+	delay(_dottime*2);
+} 
+ 
 void translate(char m)
 {
   switch(m){
-  case 'a' : {morse.dot(); morse.dash();}
-  case 'b' : {morse.dash();morse.dot();morse.dot();morse.dot();}
-  case 'c' : {morse.dash();morse.dot();morse.dash();morse.dot(); }
-  case 'd' : {morse.dash();morse.dot();morse.dot();}
-  case 'e' : {morse.dot();}
-  case 'f' : {morse.dot(); morse.dot();morse.dash();morse.dot();}
-  case 'g' : {morse.dash();morse.dash();morse.dot(); }
-  case 'h' : {morse.dot(); morse.dot();morse.dot();morse.dot();}
-  case 'i' : {morse.dot(); morse.dot();}
-  case 'j' : {morse.dot(); morse.dash(); morse.dash(); morse.dash();}
-  case 'k' : {morse.dash(); morse.dash();morse.dash();}
-  case 'l' : {morse.dot(); morse.dash();morse.dot(); morse.dot(); }
-  case 'm' : {morse.dash(); morse.dash();}
-  case 'n' : {morse.dash();morse.dot(); }
-  case 'o' : {morse.dash(); morse.dash(); morse.dash();}
-  case 'p' : {morse.dot(); morse.dash();morse.dash();morse.dot();}
-  case 'q' : {morse.dash(); morse.dash();morse.dot(); morse.dash();}
-  case 'r' : {morse.dot(); morse.dash();morse.dot();}
-  case 's' : {morse.dot(); morse.dot();morse.dot();}
-  case 't' : {morse.dash();}
-  case 'u' : {morse.dot(); morse.dot();morse.dash();}
-  case 'v' : {morse.dot(); morse.dot();morse.dot();morse.dash();}
-  case 'w' : {morse.dot(); morse.dash(); morse.dash(); }
-  case 'x' : {morse.dash();morse.dot();morse.dot();morse.dash();}
-  case 'y' : {morse.dash();morse.dot(); morse.dash();morse.dash();}
-  case 'z' : {morse.dash(); morse.dash();morse.dot();morse.dot();}
+  case 'a' : {dot(); dash();}
+  case 'b' : {dash();dot();dot();dot();}
+  case 'c' : {dash();dot();dash();dot(); }
+  case 'd' : {dash();dot();dot();}
+  case 'e' : {dot();}
+  case 'f' : {dot(); dot();dash();dot();}
+  case 'g' : {dash();dash();dot(); }
+  case 'h' : {dot(); dot();dot();dot();}
+  case 'i' : {dot(); dot();}
+  case 'j' : {dot(); dash(); dash(); dash();}
+  case 'k' : {dash(); dash();dash();}
+  case 'l' : {dot(); dash();dot(); dot(); }
+  case 'm' : {dash(); dash();}
+  case 'n' : {dash();dot(); }
+  case 'o' : {dash(); dash();dash();}
+  case 'p' : {dot(); dash();dash();dot();}
+  case 'q' : {dash(); dash();dot(); dash();}
+  case 'r' : {dot(); dash();dot();}
+  case 's' : {dot(); dot();dot();}
+  case 't' : {dash();}
+  case 'u' : {dot(); dot();dash();}
+  case 'v' : {dot(); dot();dot();dash();}
+  case 'w' : {dot(); dash(); dash(); }
+  case 'x' : {dash();dot();dot();dash();}
+  case 'y' : {dash();dot(); dash();dash();}
+  case 'z' : {dash(); dash();dot();dot();}
   }
 }
 void loop()
@@ -58,12 +76,13 @@ void loop()
     {
       if(str[i]==' ')
       {
-        morse.w_space();
+        c_space();c_space();c_space();
       }
-      else {translate(str[i]); }
-      morse.w_space();
+      else {translate(str[i]);c_space();}
+      
     }
-    Serial.println("播放完毕");
     delay(2);
   }
 }
+    
+  
