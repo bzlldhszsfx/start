@@ -79,6 +79,6 @@ void loop()
       else ；
     }
     Serial.println("播放完毕");
-    delay(2);
+    delay(2)；
   }
 }
